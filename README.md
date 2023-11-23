@@ -7,6 +7,5 @@ Dihedral angle is one crucial parameter in constructing potential energy surface
    Scan a series of different dihedral angle without optimization structure.
 
 Tutorial
-
-
-First, optimize the molecule geometry. Using Chemdraw to create the .mol file (containing chemical structure and preliminary geometry), then using Avogadro to transfer into .xyz file. 
+1. First, optimize the molecule geometry. Using Chemdraw to create the .mol file (containing chemical structure and preliminary geometry), then using Avogadro to transfer into .xyz file.
+2. Gaussian optimize structure.
