@@ -85,7 +85,7 @@ def get_dihedral(filename, index1, index2, index3, index4):
     
     return theta_degree
 
-def rotate_to_0(filename, rotate, non_rotate, D1, D2, D3, D4):
+def rotate_to_0(filename, rotate, non_rotate, D2, D3):
     ### First create a zero dihedral angle structure ###
     ### Rotate is the part you want to rotate ###
     ### Non_rotate is the part you wanna fix their geometry ###
