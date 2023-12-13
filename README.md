@@ -12,8 +12,8 @@ Tutorial
 
 3. Using create_dihedral.py to create different dihedral angle structures.
 
-4. Next upload all structures to NERSC or cluster with Gaussian. Run the command: for i in {0..180..5}; do mkdir $i; cd $i; mv ../${i}degree.xyz .; cd ..; done.
+4. Next upload all structures to NERSC or cluster with Gaussian. Run the command: `for i in {0..180..5}; do mkdir $i; cd $i; mv ../${i}degree.xyz .; cd ..; done.` Then copy run file and createscan.sh to each folder.
 
-for i in {0..180..5}; do cd $i; bash createscan.sh ${i}degree.xyz $i; cd ..; done
+`for i in {0..180..5}; do cd $i; bash createscan.sh ${i}degree.xyz $i; cd ..; done`
 
-for i in {0..180..5}; do cd $i; sbatch run_${i}; cd ..; done
+`for i in {0..180..5}; do cd $i; sbatch run_${i}; cd ..; done`
