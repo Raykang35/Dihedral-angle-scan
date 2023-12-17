@@ -126,19 +126,41 @@ def rotate_to_0(filename, rotate, non_rotate, D1, D2, D3, D4):
     
     rotate_atoms.rotate(current_diangle, (D3x-D2x, D3y-D2y, D3z-D2z), center=(D2x, D2y, D2z))
     rotate_atoms += non_rotate_atoms
-
+    
     ase.io.write("0degree.xyz", rotate_atoms)
     # Delete all the intermediate file
     file_list = ["non_rotate.xyz","rotate.xyz","temp_rotate.xyz","temp_non_rotate.xyz"]
     for f in file_list:
         os.remove(f)
-    
-    print("Created 0 degree structure")
+        
+def check(D1, D2, D3, D4, N_non):
+    ### Check the 0degree.xyz dihedral is correct or not ###
+    ### N_non is the number of non-rotating atoms ###
+    with open ("0degree.xyz", "r") as r:
+        N_atoms = r.readline()
+    rotate = [int(i) for i in range(int(N_atoms) - N_non)]
+    non_rotate = [int(j) for j in range((int(N_atoms) - N_non), int(N_atoms))]
+    #print(rotate)
+    #print(non_rotate)
+    not0 = True
+    while not0:
+        angle = get_dihedral("0degree.xyz", D1, D2, D3, D4)   
+        if angle < 10e-6:
+            not0 = False
 
-def rotate(i, rotate, non_rotate, D2, D3):
+        else:
+            rotate_to_0("0degree.xyz", rotate, non_rotate, D1, D2, D3, D4)
+            
+    print("Successfully created 0 degree structure")
+    
+def rotate(i, D2, D3, N_non):
     ### Create structure with 5 degrees increasing ###
     ### i is the final angle +5 ex: 185 will create 5-180 file with gap 5 ###
     df = get_geometry("0degree.xyz")
+    with open ("0degree.xyz", "r") as r:
+        N_atoms = r.readline()
+    rotate = [int(i) for i in range(int(N_atoms) - N_non)]
+    non_rotate = [int(j) for j in range((int(N_atoms) - N_non), int(N_atoms))]
     for j in range(5, i, 5):
         new_df1 = df.iloc[rotate]
         new_df1.to_csv('temp_rotate.xyz', header=None, index=None, sep=' ', mode='a')
@@ -175,7 +197,7 @@ def rotate(i, rotate, non_rotate, D2, D3):
         rotate_atoms.rotate(-j, (D3x-D2x, D3y-D2y, D3z-D2z), center=(D2x, D2y, D2z))
         rotate_atoms += non_rotate_atoms
 
-        ase.io.write(f"{j}degrees.xyz", rotate_atoms)
+        ase.io.write(f"{j}degree.xyz", rotate_atoms)
         # Delete all the intermediate file
         file_list = ["non_rotate.xyz","rotate.xyz","temp_rotate.xyz","temp_non_rotate.xyz"]
         for f in file_list:
