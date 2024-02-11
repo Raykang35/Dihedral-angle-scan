@@ -1,3 +1,4 @@
+# Author: Ray made in 2023 Winter
 import os
 import numpy as np
 import ase
