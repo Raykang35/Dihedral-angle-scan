@@ -10,7 +10,7 @@ Tutorial
 1. First, optimize the molecule geometry. Using Chemdraw to create the .mol file (containing chemical structure and preliminary geometry), then using Avogadro to transfer into .xyz file.
 2. Use Gaussian to optimize structure.
 
-3. Using create_dihedral.py to create different dihedral angle structures.
+3. Using create_dihedral.py (Avogadro is fine but you have to each file by scratch, ASE is not working for this) to create different dihedral angle structures.
 
 4. Next upload all structures to NERSC or cluster with Gaussian. Run the command: `for i in {0..180..5}; do mkdir $i; cd $i; mv ../${i}degree.xyz .; cd ..; done.` Then copy run file and createscan.sh to each folder.
 
