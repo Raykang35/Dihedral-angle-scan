@@ -1,4 +1,5 @@
 # Author: Ray made in 2023 Winter
+# Last updated: 2024/03/08
 import os
 import numpy as np
 import ase
