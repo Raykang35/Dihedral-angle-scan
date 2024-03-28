@@ -1,5 +1,5 @@
 # Author: Ray made in 2023 Winter
-# Last updated: 2024/03/08
+# Last updated: 2024/03/23
 import os
 import numpy as np
 import ase
@@ -234,3 +234,9 @@ def toPoscar(name,xyzFile,cellParam):
     [g, h, i]
 ])
     ase.io.vasp.write_vasp(f"{name}.vasp",atoms,sort=True)    
+
+def toXYZ(file):
+    # From CONTCAR or POSCAR to XYZ to read dihedrals
+    name = file
+    atoms = ase.io.read(file)
+    ase.io.write(f"{name}.xyz", atoms, format="xyz")
