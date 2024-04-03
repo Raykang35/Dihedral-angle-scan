@@ -1,5 +1,6 @@
 # Author: Ray made in 2023 Winter
-# Last updated: 2024/03/23
+# The file format need to be xyz file, maybe in future can be upgraded that can read POSCAR or PDB
+# Last updated: 2024/03/30
 import os
 import numpy as np
 import ase
